@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>###</title>
+  <style>
+    body {
+	margin: 0px;
+	font-family: monospace;
+    }
+    
+    .ui-container {
+	
+    }
+
+    .ui-item input {
+	width: 90vw;
+	accent-color: black;
+    }
+
+    .inputAR {
+	border: none;
+	width: 40vw;
+	font-size: 3em;
+    }
+
+    .inputAR:focus {
+	outline: none;
+    }
+
+    .menu-wraper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+    }
+
+    .menu-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+    }
+
+    .card-container {
+	width: 30vw;
+	height: 16vh;
+	/* border-left: solid 15px white; */
+    }
+
+    .card-container:hover {
+	/* border-left: solid 15px black; */
+	background-color: hsl(0, 0%, 97%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ui-container" id="uiContainer">
+    <div class='menu-wraper'>
+      <div class="menu-container"></div>
+      </div>
+  </div>
+
+  
+  <script>
+    var b=class{constructor(i=document.body){this.container=i,this.controllers=[],this.hidden=!1}addSlider(i,l,a,r=0,c=100,u=1){let p=this._createUIItem(i),d=document.createElement("input");d.className="slider",d.type="range",d.min=r,d.max=c,d.step=u,d.value=l[a];let w=document.createElement("span");w.textContent=d.value,d.oninput=()=>{l[a]=parseFloat(d.value),w.textContent=d.value},p.appendChild(d),p.appendChild(w),this.container.appendChild(p)}addCheckbox(i,l,a){let r=this._createUIItem(i),c=document.createElement("input");c.type="checkbox",c.checked=l[a],c.onchange=()=>{l[a]=c.checked},r.appendChild(c),this.container.appendChild(r)}addDropdown(i,l,a,r){let c=this._createUIItem(i),u=document.createElement("select");for(let[p,d]of Object.entries(r)){let w=document.createElement("option");w.value=d,w.textContent=p,u.appendChild(w)}u.value=l[a],u.onchange=()=>{l[a]=parseFloat(u.value)},c.appendChild(u),this.container.appendChild(c)}addButton(i,l){let a=this._createUIItem(""),r=document.createElement("button");r.textContent=i,r.className="neumorphic-button",r.onclick=l,a.appendChild(r),this.container.appendChild(a)}addInfo(i,l){let a=this._createUIItem(i),r=document.createElement("div");r.className="info",r.textContent=l,a.appendChild(r),this.container.appendChild(a)}toggleMenu(){this.hidden=!this.hidden,this.container.classList.toggle("hidden",this.hidden)}_createUIItem(i){let l=document.createElement("div");if(l.className="ui-item",i){let a=document.createElement("label");a.textContent=i,l.appendChild(a)}return l}};function W(f){R(1,1),R(4,5),R(3,4),R(4,3),R(3,2),R(2,1),R(2,3),R(3,5),R(1,2),V(f)}var O=[];function R(f,i,l){let a=f/i,r=document.createElement("div");r.className="card-container";let c=document.createElement("div");c.style.backgroundColor="hsl(0, 0%, 90%)",a<=1?(c.style.width="50px",c.style.height=50/a+"px"):(c.style.height="50px",c.style.width=50*a+"px");let u=0,p=document.createElement("p");p.innerText=`${f}:${i}`,c.append(p);let d=document.createElement("p");d.innerHTML=`amount: <span class='span-amount'> ${u} </span>`,d.style.fontSize="1em",r.append(d),r.append(c),r.addEventListener("click",()=>{u++,d.innerHTML=`amount: <span class='span-amount'> ${u} </span>`,O.push(a)}),U.append(r)}function V(f){let i=document.createElement("div");i.innerText="run",i.style.position="absolute",i.style.cursor="pointer",i.style.right="5vw",i.style.bottom="10vh",i.style.fontSize="4em",i.style.rotate="-90deg",i.addEventListener("click",()=>{O[0]!==void 0&&(document.querySelector(".menu-wraper").style.display="none",f(O))}),U.append(i)}function J(f){let i=document.createElement("div");return i.innerText="next",i.style.position="absolute",i.style.cursor="pointer",i.style.right="5vw",i.style.bottom="10vh",i.style.fontSize="4em",i.style.rotate="-90deg",i}function Z(f,i){let l=2,a=1,r=document.createElement("div"),c=document.createElement("input");c.className="inputAR",c.value=l,c.oninput=p=>{l=p.target.value};let u=document.createElement("input");u.className="inputAR",u.value=a,u.oninput=p=>{a=p.target.value},button=J(i),button.addEventListener("click",()=>{r.innerHTML="",f.CONTAINER_AR=l/a,W(i)}),r.append(c,u,button),U.append(r)}var U=document.querySelector(".menu-container");var K=["#adb5bd","#212529","#ced4da","#343a40","#e9ecef","#495057","#dee2e6","#6c757d","#f72585","#3a0ca3","#3f37c9","#7209b7","#4361ee","#560bad","#4895ef","#480ca8","#4cc9f0","#b5179e"],n={};n.START=!1;n.CONTAINER_AR=3/1;n.RECT_SIZE_MIN=50;n.LAYOUTS_AMOUNT=500;n.PARENTS_AMOUNT=100;n.GENERATIONS_LIM=500;n.EPS=1;n.RX=1;n.RY=1;n.RH=1;n.RXM=.5;n.RYM=.5;n.RHM=50;Z(n,Q);var C=new b(document.getElementById("uiContainer"));function Q(f){C.addSlider("CHLD",n,"LAYOUTS_AMOUNT",50,5e3,1),C.addSlider("PRNT",n,"PARENTS_AMOUNT",5,2e3,1),C.addSlider("GLMT",n,"GENERATIONS_LIM",100,1e4,1),C.addSlider("RHML",n,"RHM",0,100,1),C.addSlider("RXML",n,"RXM",0,3,.1),C.addSlider("RYML",n,"RYM",0,3,.1),C.addSlider("EPSL",n,"EPS",.01,1,.01);let i=document.createElement("canvas");i.width=window.innerWidth,i.height=window.innerHeight,document.body.append(i);let l=0,a=i.getContext("2d");function r(e=0,t=1){return Math.floor(Math.random()*(t-e+1)+e)}function c(e,t){return e.x>=0&&e.x+e.width<=t.width&&e.y>=0&&e.y+e.height<=t.height}function u(e,t){return e.x+e.width>=t.x&&e.x<=t.x+t.width&&e.y+e.height>=t.y&&e.y<=t.y+t.height}function p(e,t){for(let s=0;s<t.length;s++)if(e.id!==t[s].id&&u(e,t[s]))return!0;return!1}function d(e){e.aspectRatio>=1?(e.height=n.RECT_SIZE_MIN,e.width=e.height*e.aspectRatio):(e.width=n.RECT_SIZE_MIN,e.height=e.width/e.aspectRatio),e.x=Math.random()*(o.width-e.width),e.y=Math.random()*(o.height-e.height)}class w{marginX=10;constructor(t){this.aspectRatio=t,this.width=i.width-this.marginX,this.height=this.width/this.aspectRatio,this.x=this.marginX*.5,this.y=this.marginX*.5+50,this.area=this.width*this.height}draw(t){t.beginPath(),t.rect(this.x,this.y,this.width,this.height),t.strokeStyle="black",t.stroke()}}class A{constructor(t,s){this.id=l++,this.aspectRatio=t,this.x=null,this.y=null,this.width=null,this.height=null,this.color=s}copy(){let t=new A(this.aspectRatio,this.color);return t.id=this.id,t.x=this.x,t.y=this.y,t.width=this.width,t.height=this.height,t}randomize(){this.x+=Math.random()*n.RX-n.RX*.5,this.y+=Math.random()*n.RY-n.RY*.5,this.aspectRatio>=1?(this.height+=Math.random()*n.RH-n.RH*.5,this.height<n.RECT_SIZE_MIN&&(this.height=n.RECT_SIZE_MIN),this.width=this.height*this.aspectRatio):(this.width+=Math.random()*n.RH-n.RH*.5,this.width<n.RECT_SIZE_MIN&&(this.width=n.RECT_SIZE_MIN),this.height=this.width/this.aspectRatio)}draw(t){t.beginPath(),t.rect(this.x+o.marginX*.5,this.y+o.y,this.width,this.height),t.fillStyle=this.color,t.strokeStyle="white",t.fill(),t.stroke()}}class _{valide=null;fitness=null;rects=[];constructor(){}copy(){let t=new _;t.valide=this.valide,t.fitness=this.fitness;for(let s of this.rects)t.rects.push(s.copy());return t}init(t){for(let s of t){let h=new A(s.aspectRatio,s.color);d(h);let I=100,y=0;for(;p(h,this.rects)&&y<I;)d(h),y++;if(y>=I){this.valide=!1,this.valide=!1;break}this.rects.push(h),this.valide=!0}}evolve(t=n.EPS){for(let s=0;s<this.rects.length;s++)if(Math.random()<t){let h=this.rects[s].copy();h.id=this.rects[s].id,h.randomize();let I=1e4,y=0,T=!0;for(;!c(h,o)||p(h,this.rects);){if(y>=I){T=!1;break}h=this.rects[s].copy(),h.randomize(),y++}T&&(this.rects[s]=h.copy())}this.fitness=Y(this.rects)}draw(t){for(let s of this.rects)s.draw(t)}}let o=new w(n.CONTAINER_AR);n.RECT_SIZE_MIN=Math.min(o.width,o.height)/10;let k=[];f.sort((e,t)=>e-t);let H=0,X=f[0];for(let e of f)X!==e&&(X=e,H++),k.push(new A(e,K[H]));o.draw(a);function Y(e){let t=0;for(let s of e)t+=s.width*s.height;return o.area-t}function P(e){let t=[];for(let s=0;s<e;s++){let h=new _;for(h.init(k);!h.valide;)h=new _,h.init(k);h.fitness=Y(h.rects),t.push(h)}return t}function z(e){m.sort((s,h)=>s.fitness-h.fitness);let t=[m[0].copy()];for(let s=1;s<e;s++)t[s]=m[s].copy();return t}let m=P(n.LAYOUTS_AMOUNT);m.sort((e,t)=>e.fitness-t.fitness),m[0].draw(a);let S=m[0].fitness,F=null,x=0,$=3;function q(e,t,s){let I=o.y;o.draw(e),N[0]&&(N[0].rects.forEach(g=>{e.beginPath(),e.rect(g.x+o.x,g.y+o.y,g.width,g.height),e.fillStyle=g.color,e.fill(),e.strokeStyle="white",e.stroke()}),e.fillText(`Error: ${N[0].fitness.toFixed(2)}`,o.marginX*.5,o.y-5));let y=(o.width-40)/3,T=(o.height-40)/3,G=o.x,B=o.y+o.height+50;for(let g=0;g<s;g++){let D=g*(y+20),E={x:G+D,y:B,width:y,height:T};e.beginPath(),e.rect(E.x,E.y,E.width,E.height),e.strokeStyle="black",e.stroke(),t[g].rects.forEach(v=>{let M={};M.width=v.width*(y/o.width),M.height=v.height*(T/o.height),M.x=v.x*(y/o.width),M.y=v.y*(T/o.height),e.beginPath(),e.rect(E.x+M.x,E.y+M.y,M.width,M.height),e.fillStyle=v.color,e.fill(),e.strokeStyle="white",e.stroke()}),e.fillText(`Error: ${t[g].fitness.toFixed(2)}`,E.x,E.y-5)}}let N=[];function L(){if(S>1&&x<n.GENERATIONS_LIM){let e=Math.min(n.PARENTS_AMOUNT,n.LAYOUTS_AMOUNT),t=z(e);m[0]=t[0].copy();for(let h=1;h<n.LAYOUTS_AMOUNT;h++)m[h]=t[r(0,e-1)].copy();for(let h=1;h<m.length;h++)m[h].evolve();a.clearRect(0,0,i.width,i.height),q(a,m,$),F=S,S=m[0].fitness;let s=Math.abs(F-S)+.1;n.RH=S/(o.width*o.height)*n.RHM,n.RX=S/(o.width*o.height)*(o.width*n.RXM),n.RY=S/(o.width*o.height)*(o.height*n.RYM),x++,requestAnimationFrame(L)}else if(x>=n.GENERATIONS_LIM){N.push(m[0].copy()),N.sort((t,s)=>t.fitness-s.fitness);let e=P(n.LAYOUTS_AMOUNT);e.sort((t,s)=>t.fitness-s.fitness);for(let t=0;t<m.length;t++)m[t]=e[t].copy();x=0,requestAnimationFrame(L)}}requestAnimationFrame(L)}
+
+  </script>
+</body>
+
+</html>
